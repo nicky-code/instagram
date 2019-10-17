@@ -1,31 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-
-class Image(models.Model):
-    image = models.ImageField(upload_to ='images/',null=True)
-    image_name = models.ChartField(max_length=35)
-    image_caption=models.ChartField(max_length=35,null=True)
-    likes=models.IntegerField()
-    comments=models.ChartField(max_length=35,null=True)
-    profile=models.ForeignKey(Profile,null=True)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.image_name
-    
-    
-    def save_image(self):
-        self.save()
-    
-    def delete_image(self):
-        self.delete()
-        
-    def update_caption(self):
-        caption=self.image_caption.update()
-        return caption
-    
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to ='photos/',null=True)
@@ -44,6 +21,30 @@ class Profile(models.Model):
         
     def update_profile(self):
         self.update()
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to ='images/',null=True)
+    image_name = models.CharField(max_length=35)
+    image_caption=models.CharField(max_length=35,null=True)
+    likes=models.IntegerField()
+    comments=models.CharField(max_length=35,null=True)
+    profile=models.ForeignKey(Profile,null=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.image_name
+    
+    
+    def save_image(self):
+        self.save()
+    
+    def delete_image(self):
+        self.delete()
+        
+    def update_caption(self):
+        caption=self.image_caption.update()
+        return caption
         
 
 class Comment(models.Model):
