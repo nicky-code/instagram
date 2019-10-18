@@ -7,7 +7,7 @@ from tinymce.models import HTMLField
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to ='photos/',null=True)
     bio = models.CharField(max_length=35,null=True)
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.bio
@@ -18,18 +18,22 @@ class Profile(models.Model):
     
     def delete_profile(self):
         self.delete()
-        
+    
+    @classmethod    
     def update_profile(self):
         self.update()
+        
+    # @classmethod
+    # def search_by_profile
 
 
 class Image(models.Model):
     image = models.ImageField(upload_to ='images/',null=True)
     image_name = models.CharField(max_length=35)
     image_caption=models.CharField(max_length=35,null=True)
-    likes=models.IntegerField()
-    comments=models.CharField(max_length=35,null=True)
-    # profile=models.ForeignKey(Profile,null=True)
+    # likes=models.IntegerField()
+    # comments=models.CharField(max_length=35,null=True)
+    profile=models.ForeignKey(Profile,null=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):

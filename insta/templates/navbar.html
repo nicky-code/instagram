@@ -16,30 +16,42 @@
             <span ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUAtSPV9Gc08sYCE9lgHgJhHGmFlStM_APlN4NgMIKE00B7Yfw" height="60"></span></a>
         </div>
     </div>
+    <!-- Adding a search form  -->
+    <div class="search text-center" style="margin-top: 2%; margin-left:5%;">
+      <input type="text" class="input-sm form-control" name="search-form"
+      placeholder="Search">
+  </div>
     <div class="col-sm-6 col-md-6">
             {% if user.is_authenticated %}
-            <ul>
-              <li class="dropdown">
+            
+              <div class="dropdown">
                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
                           <span class="caret"></span>
                       </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a href="{%url 'welcome'%}">Image</a>
-                  </li>
-                  <li>
+                <div class="dropdown-menu" role="menu">
+                  <p>
+                    <a href="{%url 'myProfile'%}">Profile</a>
+                  </p>
+                  <p>
                     <a href="/accounts/password/change">Change Password</a>
-                  </li>
-                  <li>
+                  </p>
+                  <p>
+                    <a href="{%url 'new_image'%}">Create a POST</a>
+                  </p>
+                  <p>
+                    <a href="{%url 'profile'%}">Create a Profile</a>
+                  </p>
+
+                  <p>
                     <a href="/logout">Logout</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                  </p>
+                </div>
+              </div>
+            
             {% else %}
-            <li>
+            <p>
               <a class='btn btn-default' href="/accounts/login">Login</a>
-            </li>
+            </p>
 
             {% endif %}
           </div>

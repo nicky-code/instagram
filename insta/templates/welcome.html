@@ -3,8 +3,10 @@
 {% block content %} 
 {{ block.super}}
 
+
+
 <div class="container">
- 
+ <img src="{{myProfile.profile_photo.url}}">
   {% for img in image %}
 
   <div class="row">
