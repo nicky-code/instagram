@@ -23,9 +23,11 @@ class Profile(models.Model):
     def update_profile(self):
         self.update()
         
-    # @classmethod
-    # def search_by_profile
-
+    @classmethod
+    def search_by_profile(cls,username):
+       certain_user = cls.objects.filter(user__username__icontains=username)
+       
+       return  certain_user
 
 class Image(models.Model):
     image = models.ImageField(upload_to ='images/',null=True)

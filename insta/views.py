@@ -60,3 +60,18 @@ def myProfile(request):
    all_images = Image.objects.filter(user=current_user)
    myProfile = Profile.objects.filter(user = current_user).first()
    return render(request, 'profile.html', {"all_images":all_images, "myProfile":myProfile})
+
+
+@login_required(login_url='/accounts/login/')
+def search_users(request):
+    
+   if 'username' in request.GET and request.GET["username"]:
+       search_term = request.GET.get("username")
+       searched_users = Profile.search_by_profile(search_term)
+       print(searched_users)
+       message = f"{search_term}"
+       return render(request, "all-instagram/search.html",{"message":message,"users": searched_users})
+   else:
+       message = "You haven't searched for any term"
+       return render(request, 'all-instagram/search.html',{"message":message})
+
