@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
@@ -28,6 +29,12 @@ class Profile(models.Model):
        certain_user = cls.objects.filter(user__username__icontains=username)
        
        return  certain_user
+   
+    @classmethod
+    def get_by_id(cls,id):
+        profile=Profile.objects.get(user=id)
+     
+        return profile
 
 class Image(models.Model):
     image = models.ImageField(upload_to ='images/',null=True)
@@ -36,6 +43,7 @@ class Image(models.Model):
     # likes=models.IntegerField()
     # comments=models.CharField(max_length=35,null=True)
     profile=models.ForeignKey(Profile,null=True)
+    posted_time = models.DateTimeField(auto_now=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -51,6 +59,11 @@ class Image(models.Model):
     def update_caption(self):
         caption=self.image_caption.update()
         return caption
+    
+    @classmethod
+    def get_all_images(cls):
+        images = Image.objects.all()
+        return images
         
 
 class Comment(models.Model):
