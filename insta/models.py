@@ -64,6 +64,14 @@ class Image(models.Model):
     def get_all_images(cls):
         images = Image.objects.all()
         return images
+    
+    @classmethod
+    def get_image_by_id(cls,id):
+        image=cls.objects.filter(id=id).all()
+        return image
+    
+    
+    
         
 
 class Comment(models.Model):
