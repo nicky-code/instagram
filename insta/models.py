@@ -41,7 +41,7 @@ class Image(models.Model):
     image_name = models.CharField(max_length=35)
     image_caption=models.CharField(max_length=35,null=True)
     # likes=models.IntegerField()
-    # comments=models.CharField(max_length=35,null=True)
+    comments=models.CharField(max_length=35,null=True)
     profile=models.ForeignKey(Profile,null=True)
     posted_time = models.DateTimeField(auto_now=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -75,16 +75,16 @@ class Image(models.Model):
         images = Image.objects.filter(profile_photo=profile)
         return images
     
-    def display-images(cls):
+    def display_images(cls):
         images=cls.objects.all()
         return images
     
         
 
 class Comment(models.Model):
-    feedback = models.CharField(max_length=35,null=True)
+    comment = HTMLField()
     image = models.ForeignKey(Image,null=True)
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.feedback
@@ -97,7 +97,12 @@ class Comment(models.Model):
         self.delete()
         
     def update_comment(self):
-        self.update()  
+        self.update()
+        
+    @classmethod
+    def get_comments_by_image_id(cls,image):
+        comments = Comment.objects.get(image_id=image)
+        return comments 
         
         
 class Follow(models.Model):
