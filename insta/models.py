@@ -70,7 +70,14 @@ class Image(models.Model):
         image=cls.objects.filter(id=id).all()
         return image
     
+    @classmethod
+    def get_profile_picture(cls,profile):
+        images = Image.objects.filter(profile_photo=profile)
+        return images
     
+    def display-images(cls):
+        images=cls.objects.all()
+        return images
     
         
 

@@ -3,6 +3,7 @@ from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm,ProfileForm
 from .models import Image,Profile,Comment,Follow
+import datetime as dt
 
 # Create your views here.
 
@@ -17,8 +18,6 @@ def welcome(request):
 
 @login_required(login_url='/accounts/login/')
 def new_image(request):
-    
-    # image=Image.objects.all()
     
     current_user = request.user
     if request.method == 'POST':
