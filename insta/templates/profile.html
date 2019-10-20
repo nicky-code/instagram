@@ -15,7 +15,7 @@
 
 
 
-  <div class="container">
+  <div class="container" style="padding-left: 3%">
 
     <div class="pro">
           
@@ -25,7 +25,7 @@
     <hr> 
     <div class="imag"> 
       {%for user in all_images%}       
-        <img src="{{user.image.url}}" width="300" height="300" class="img-responsive" alt="Image">
+        <img src="{{user.image.url}}" width="290" height="300" class="img-responsive" style="justify-content: space-between;padding:1%" alt="Image">
         <!-- <p> {{ user.image_caption }} </p> -->
         {% empty %}
         <div class="row">
