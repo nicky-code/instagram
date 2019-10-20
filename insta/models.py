@@ -40,8 +40,6 @@ class Image(models.Model):
     image = models.ImageField(upload_to ='images/',null=True)
     image_name = models.CharField(max_length=35)
     image_caption=models.CharField(max_length=35,null=True)
-    # likes=models.IntegerField()
-    comments=models.CharField(max_length=35,null=True)
     profile=models.ForeignKey(Profile,null=True)
     posted_time = models.DateTimeField(auto_now=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -62,7 +60,7 @@ class Image(models.Model):
     
     @classmethod
     def get_all_images(cls):
-        images = Image.objects.all()
+        images =cls.objects.all().prefetch_related('comments_set')
         return images
     
     @classmethod
@@ -81,13 +79,13 @@ class Image(models.Model):
     
         
 
-class Comment(models.Model):
-    comment = HTMLField()
-    image = models.ForeignKey(Image,null=True)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+class Comments(models.Model):
+    comment = models.CharField(max_length=250)
+    image_comment = models.ForeignKey(Image,on_delete=models.CASCADE,null=True)
+    user_profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
     
     def __str__(self):
-        return self.feedback
+        return self.comment
     
     
     def save_comment(self):
@@ -98,11 +96,6 @@ class Comment(models.Model):
         
     def update_comment(self):
         self.update()
-        
-    @classmethod
-    def get_comments_by_image_id(cls,image):
-        comments = Comment.objects.get(image_id=image)
-        return comments 
         
         
 class Follow(models.Model):

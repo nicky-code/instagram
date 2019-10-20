@@ -8,13 +8,20 @@
 <div class="container">
  <img src="{{myProfile.profile_photo.url}}" style="border-radius: 60%;width: 10%;height: 10%;">
   {% for img in image %}
-
-  <div class="row">
-    <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{img.image.url}}" width="350" height="320" class="img-responsive" alt="Image">
-        <p class="text-center"> {{ img.posted_time }} </p>
-        <p class="text-center"> {{ img.image_caption }} </p>
+   
+    <div class="card" style="width: 30rem; margin-top:5%; margin-left:18% ">
+        <img src="{{img.image.url}}" height="470" class="img-responsive" alt="Image">
+      
+        <div class="card-body">
+            <p> {{ img.user }} </p>
+        <p> {{ img.posted_time }} </p>
+        <p> {{ img.image_caption }} </p>
+        <hr>
+        {% for com in img.comments_set.all %}
+        <p>{{com.comment}}</p>
+        {% endfor %}
+        <a href="{%url 'comment' img.id%}" class="btn btn-default">Comment</a>
+      </div>
     </div>
 
   {% empty %}

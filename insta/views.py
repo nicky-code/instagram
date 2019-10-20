@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import ImageForm,ProfileForm
-from .models import Image,Profile,Comment,Follow
+from .forms import ImageForm,ProfileForm,CommentForm
+from .models import Image,Profile,Comments,Follow
 import datetime as dt
 
 # Create your views here.
@@ -11,10 +11,12 @@ import datetime as dt
 def welcome(request):
     
    image=Image.objects.all()
+   instagram_users=Profile.objects.all()
    current_user = request.user
    myProfile = Profile.objects.filter(user = current_user).first()
+   myComment = Comments.objects.filter(id=current_user.id).first()
    print(image)
-   return render(request, 'welcome.html',{"image":image,"myProfile":myProfile})
+   return render(request, 'welcome.html',{"image":image,"instagram_users":instagram_users,"myProfile":myProfile, "myComment":myComment})
 
 @login_required(login_url='/accounts/login/')
 def new_image(request):
@@ -74,3 +76,23 @@ def search_users(request):
        message = "You haven't searched for any term"
        return render(request, 'all-instagram/search.html',{"message":message})
 
+
+@login_required(login_url='/accounts/login/')
+def add_comment(request,image_id):
+    
+    current_user = request.user
+    image = Image.objects.filter(id=image_id).first()
+    profile_picture=Profile.objects.filter(user=current_user.id).first()
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment= form.save(commit=False)
+            comment.user_profile = profile_picture
+            comment.image_comment = image
+            comment.save()
+        return redirect('welcome')
+
+    else:
+        form = CommentForm()
+    
+    return render(request, 'comment.html',{"form":form, "image_id":image_id})
