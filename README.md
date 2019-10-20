@@ -17,3 +17,11 @@ We want our application to:
 ## Input Examples
 1.search users by profile.
 2.Create a profile,registering,sign in,log in,leave a comment,etc
+
+## Output Examples
+any User will be able to see the photos he/she has posted and their likes and comments, and the user may be able to search for other users.
+
+## TDD
+I test my project using Python3.6 manage.py test insta(my app-name).
+
+## Setup/Installation Requirements
