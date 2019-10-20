@@ -16,11 +16,10 @@
 {% for img in all_images %}
 
   <div class="container">
-    <!-- displaying News articles -->
+
     <div class="pro">
             {%if user%}
             <img src="{{myProfile.profile_photo.url}}" class="profile">
-            <p> {{ img.image_caption }} </p>
             {%endif%}
     </div>  
     <div class="imag">        
