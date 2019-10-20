@@ -14,3 +14,6 @@ We want our application to:
 3.See my profile with all my pictures.
 4.Follow other users and see their pictures on my timeline.
 5.Like a picture and leave a comment on it.
+## Input Examples
+1.search users by profile.
+2.Create a profile,registering,sign in,log in,leave a comment,etc
