@@ -54,3 +54,15 @@ c.update_caption() - Update image caption in the database.
 
 9.Your application should have a solid authentication system that allows users to sign in or register into the application before using it. When a user registers with your application they should receive a confirmation email.
 
+## Technology used
+Python3.6
+Django
+Heroku
+Bootstrap4
+
+## My link repository on above
+
+## Contact me on aline.nicole7@gmail.com
+## Title Licence
+Copyright(c)2019 Aline Nicole UWAMARIYA
+
