@@ -9,11 +9,11 @@
  
   {% for img in image %}
    
-    <div class="card" style="width: 30rem; margin-top:5%; margin-left:18% ">
+    <div class="card" style="width: 25rem; margin-top:5%; margin-left:18% ">
       {%if myProfile%}
       <img src="{{myProfile.profile_photo.url}}" style="border-radius: 60%;width: 20%;height: 20%;margin-bottom: 2%">
       {%endif%}
-        <img src="{{img.image.url}}" height="470" class="img-responsive" alt="Image">
+        <img src="{{img.image.url}}" height="450" class="img-responsive" alt="Image">
       
         <div class="card-body">
             <p style="color: brown"> {{ img.user }} </p>

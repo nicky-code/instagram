@@ -13,26 +13,30 @@
 
 </style>
 
-{% for img in all_images %}
+
 
   <div class="container">
 
     <div class="pro">
-            {%if user%}
+          
             <img src="{{myProfile.profile_photo.url}}" class="profile">
-            {%endif%}
-    </div>  
-    <div class="imag">        
-        <img src="{{img.image.url}}" width="350" height="320" class="img-responsive" alt="Image">
-        <p> {{ img.image_caption }} </p>
+          
+    </div> 
+    <hr> 
+    <div class="imag"> 
+      {%for user in all_images%}       
+        <img src="{{user.image.url}}" width="300" height="300" class="img-responsive" alt="Image">
+        <!-- <p> {{ user.image_caption }} </p> -->
+        {% empty %}
+        <div class="row">
+          <h2 class="text-center">There No News Items</h2>
+        </div>
+        {% endfor %}
       </div>
     </div>
 
-  {% empty %}
-  <div class="row">
-    <h2 class="text-center">There No News Items</h2>
-  </div>
-  {% endfor %}
+>
+  
 </div>
 
 
