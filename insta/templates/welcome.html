@@ -14,6 +14,12 @@
       <img src="{{myProfile.profile_photo.url}}" style="border-radius: 60%;width: 20%;height: 20%;margin-bottom: 2%">
       {%endif%}
         <img src="{{img.image.url}}" height="450" class="img-responsive" alt="Image">
+        <span>
+          <a href="{% url 'like' id=i.id%}"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-68-512.png(6 kB)" style="margin-top: 0.5%; margin-right:100%"  width=40></a>
+       </span>
+       <p><strong>{{img.likes}} likes</strong></p>
+
+
       
         <div class="card-body">
             <p style="color: brown"> {{ img.user }} </p>

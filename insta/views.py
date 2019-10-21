@@ -97,6 +97,15 @@ def add_comment(request,image_id):
     
     return render(request, 'comment.html',{"form":form, "image_id":image_id})
 
+
+@login_required(login_url='/accounts/login/')
+def likes(request,id):
+   likes=1
+   image = Image.objects.get(id=id)
+   image.likes = image.likes+1
+   image.save()
+   return redirect("/")
+
 def welcome_email(request):
     if request.method == 'POST':
         form = InstagramForm(request.POST)
