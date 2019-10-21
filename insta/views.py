@@ -102,7 +102,7 @@ def add_comment(request,image_id):
 def likes(request,id):
    likes=1
    image = Image.objects.get(id=id)
-   image.likes = image.likes+1
+   image.likes = image.likes=+1
    image.save()
    return redirect("/")
 
