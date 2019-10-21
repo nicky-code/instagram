@@ -46,7 +46,7 @@ class Image(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.image_name
+        return self.image_caption
     
     
     def save_image(self):
