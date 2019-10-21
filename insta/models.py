@@ -100,3 +100,9 @@ class Follow(models.Model):
     
     def __str__(self):
         return self.profile 
+    
+    
+class InstagramWelcomeRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
+        

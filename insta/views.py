@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ImageForm,ProfileForm,CommentForm
 from .models import Image,Profile,Comments,Follow
 import datetime as dt
-
+from .email import send_welcome_email
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
@@ -96,3 +96,18 @@ def add_comment(request,image_id):
         form = CommentForm()
     
     return render(request, 'comment.html',{"form":form, "image_id":image_id})
+
+def welcome_email(request):
+    if request.method == 'POST':
+        form = InstagramForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+
+            recipient = InstagramWelcomeRecipients(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email)
+
+            HttpResponseRedirect('welcome')
+            #.................
+    return render(request, 'welcome.html', {"name": name,"email":email})
