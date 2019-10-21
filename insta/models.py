@@ -41,7 +41,7 @@ class Image(models.Model):
     image_name = models.CharField(max_length=35)
     image_caption=models.CharField(max_length=35,null=True)
     profile=models.ForeignKey(Profile,null=True)
-    likes=models.IntegerField()
+    likes=models.IntegerField(null=True)
     posted_time = models.DateTimeField(auto_now=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
