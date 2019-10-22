@@ -65,4 +65,4 @@ Bootstrap4
 
 ## Contact me on aline.nicole7@gmail.com
 ## Title Licence
-Copyright(c)2019 Aline Nicole UWAMARIYA
+Copyright(c)2019 Aline Nicole UWAMARIYA.
