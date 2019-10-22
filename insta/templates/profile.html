@@ -22,19 +22,45 @@
     <hr> 
     <div class="imag"> 
       {%for user in all_images%}       
-        <img src="{{user.image.url}}" width="290" height="300" class="img-responsive" style="justify-content: space-between;padding:1%" alt="Image">
-        <!-- <p> {{ user.image_caption }} </p> -->
-        {% empty %}
-        <div class="row">
-          <h2 class="text-center">There No News Items</h2>
-        </div>
+       
+         <!--Modal-->
+         <button type="button"  data-toggle="modal" data-target="#{{user.id}}">
+          <img src="{{user.image.url}}" width="290" height="300" class="img-responsive" style="justify-content: space-between;padding:1%" alt="Image">
+        </button>
+        
+    <div class="modal fade" id="{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+
+                  <div class="modal-body">
+                      <img src="{{user.image.url}}" class="img-fluid" data-toggle="modal" data-target="#{{user.id}}" style="width: 100%;margin-left:3%">
+                      <p><strong> Image-caption:</strong> {{user.image_caption}}</p>
+                      <p><strong> Likes:</strong> {{user.likes}}</p>
+                      {% for com in user.comments_set.all %}
+                      <p><strong> Comment:</strong> {{com.comment}}</p>
+                      {%endfor%}
+                      
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+   
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No News Items</h2>
+  </div>
+
         {% endfor %}
       </div>
     </div>
 
->
-  
-</div>
+
 
 
 			
